@@ -1,0 +1,279 @@
+{
+  "name": "TASK TTSCompare - four real providers - laboratory",
+  "nodes": [
+    {
+      "id": "d32b173a-922d-5bc1-826e-ced8910ea13e",
+      "name": "Uruchom test",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        340
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "2736497b-0af0-5e6d-8f3e-aaa1623aeeeb",
+      "name": "Przygotuj polski tekst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        340
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: { text: 'To jest test wspólnych silników TTSCompare na serwerze TASK.', language: 'pl', experiment: 'n8n-four-provider-lab' } }];"
+      }
+    },
+    {
+      "id": "493599c4-4d65-51d6-ac81-006fc6c87922",
+      "name": "TTS omnivoice",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        40
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8005/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ \"text\": $json.text, \"language_id\": \"pl\" }) }}",
+        "options": {
+          "timeout": 240000,
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "audio"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "d95b5b61-49c6-5408-90e0-c56028dcfbc1",
+      "name": "WAV omnivoice",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        40
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const item = $input.first();\nif (!item.binary || !item.binary.audio) {\n  throw new Error('Brak WAV z silnika omnivoice');\n}\nreturn [{\n  json: {\n    engine: \"omnivoice\",\n    voice: \"Arek\",\n    format: 'wav',\n    real_tts: true,\n    status: 'received_binary_unverified'\n  },\n  binary: item.binary\n}];"
+      }
+    },
+    {
+      "id": "357a55ca-0677-572f-9c99-10f1cc218bfe",
+      "name": "TTS xtts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        260
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:18764/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ \"text\": $json.text, \"language_id\": \"pl\", \"voice_id\": \"Arek\" }) }}",
+        "options": {
+          "timeout": 240000,
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "audio"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "a8cbcb3a-bdf1-5668-a925-eb840b0fdb30",
+      "name": "WAV xtts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        260
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const item = $input.first();\nif (!item.binary || !item.binary.audio) {\n  throw new Error('Brak WAV z silnika xtts');\n}\nreturn [{\n  json: {\n    engine: \"xtts\",\n    voice: \"Arek\",\n    format: 'wav',\n    real_tts: true,\n    status: 'received_binary_unverified'\n  },\n  binary: item.binary\n}];"
+      }
+    },
+    {
+      "id": "950cb5a8-8a2c-5db4-8f74-a00b184b105b",
+      "name": "TTS chatterbox",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        480
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:18767/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ \"text\": $json.text, \"language_id\": \"pl\", \"voice_id\": \"Arek\" }) }}",
+        "options": {
+          "timeout": 240000,
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "audio"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "6e70ca69-a062-53f6-8efb-08a6da8039be",
+      "name": "WAV chatterbox",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        480
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const item = $input.first();\nif (!item.binary || !item.binary.audio) {\n  throw new Error('Brak WAV z silnika chatterbox');\n}\nreturn [{\n  json: {\n    engine: \"chatterbox\",\n    voice: \"Arek\",\n    format: 'wav',\n    real_tts: true,\n    status: 'received_binary_unverified'\n  },\n  binary: item.binary\n}];"
+      }
+    },
+    {
+      "id": "96a149df-396a-5572-9bf6-5a386443713e",
+      "name": "TTS piper",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        700
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:18769/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ \"text\": $json.text, \"language_id\": \"pl\", \"voice_id\": \"pl_PL-gosia-medium\" }) }}",
+        "options": {
+          "timeout": 240000,
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "audio"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "57f32bd2-fd69-5546-8c92-8fbff023b20f",
+      "name": "WAV piper",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        700
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const item = $input.first();\nif (!item.binary || !item.binary.audio) {\n  throw new Error('Brak WAV z silnika piper');\n}\nreturn [{\n  json: {\n    engine: \"piper\",\n    voice: \"pl_PL-gosia-medium\",\n    format: 'wav',\n    real_tts: true,\n    status: 'received_binary_unverified'\n  },\n  binary: item.binary\n}];"
+      }
+    }
+  ],
+  "connections": {
+    "Uruchom test": {
+      "main": [
+        [
+          {
+            "node": "Przygotuj polski tekst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TTS omnivoice": {
+      "main": [
+        [
+          {
+            "node": "WAV omnivoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TTS xtts": {
+      "main": [
+        [
+          {
+            "node": "WAV xtts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TTS chatterbox": {
+      "main": [
+        [
+          {
+            "node": "WAV chatterbox",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TTS piper": {
+      "main": [
+        [
+          {
+            "node": "WAV piper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Przygotuj polski tekst": {
+      "main": [
+        [
+          {
+            "node": "TTS omnivoice",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "TTS xtts",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "TTS chatterbox",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "TTS piper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "id": "6bcf6460bb398315"
+}

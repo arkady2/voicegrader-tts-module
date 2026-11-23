@@ -1,0 +1,272 @@
+{
+  "schema": "ttscompare-reproducibility-v1",
+  "created_utc": "2026-11-17T11:12:12.248522+00:00",
+  "runtime": {
+    "omnivoice": {
+      "container": "omnivoice-api",
+      "image": "voicemed-tts-omnivoice-real:0.3.0",
+      "image_id": "sha256:478679975c1f893e3c5dbbb1f19a762466dda55a03237c847692286ed106f6dc",
+      "active_app_sha256": "1ad84084aead06dbe651aa20c414311dc5ec7baa8a5e211ebfee7df561269e5b",
+      "active_app_path": "/app/app.py",
+      "dependencies": {
+        "python": "3.10.12",
+        "packages": {
+          "torch": "2.8.0+cu128",
+          "torchaudio": "2.8.0+cu128",
+          "transformers": "5.13.1",
+          "huggingface-hub": "1.23.0",
+          "safetensors": "0.8.0",
+          "fastapi": "0.139.0",
+          "uvicorn": "0.51.0",
+          "numpy": "2.2.6"
+        }
+      }
+    },
+    "xtts": {
+      "container": "task-rlhf-xtts-http",
+      "image": "voicemed-tts-xtts-real:0.1.0",
+      "image_id": "sha256:1d72582ecd849889dd6822a11a360e3b27368e77bf8ae1e74b1210a9f45f76be",
+      "active_app_sha256": "18346e32490f5774301ac16dc6796ea6e834ca905fdd170a6f3ac699116b8a45",
+      "active_app_path": "/srv/app.py",
+      "dependencies": {
+        "python": "3.10.12",
+        "packages": {
+          "TTS": "0.22.0",
+          "torch": "2.3.1+cu121",
+          "torchaudio": "2.3.1+cu121",
+          "transformers": "4.35.2",
+          "huggingface-hub": "0.36.2",
+          "safetensors": "0.8.0",
+          "fastapi": "0.115.6",
+          "uvicorn": "0.34.0",
+          "numpy": "1.22.0"
+        }
+      }
+    },
+    "chatterbox": {
+      "container": "task-rlhf-chatterbox-http",
+      "image": "voicemed-tts-chatterbox-real:0.1.0",
+      "image_id": "sha256:52d25e0c5a5f283e969f72749e4f2060e54bdefcd93c2c7f1d08badcfb15c754",
+      "active_app_sha256": "35e3855a436aab4ca0c850fa656812124778a44fe9384bcc2d4c33422480dfd2",
+      "active_app_path": "/srv/app.py",
+      "dependencies": {
+        "python": "3.11.11",
+        "packages": {
+          "chatterbox-tts": "0.1.7",
+          "torch": "2.6.0+cu124",
+          "torchaudio": "2.6.0+cu124",
+          "transformers": "5.2.0",
+          "huggingface-hub": "1.19.0",
+          "safetensors": "0.5.3",
+          "fastapi": "0.115.6",
+          "uvicorn": "0.34.0",
+          "numpy": "1.26.4"
+        }
+      }
+    },
+    "piper": {
+      "container": "task-rlhf-piper-http",
+      "image": "voicemed-tts-piper-real:0.1.0",
+      "image_id": "sha256:6728c4897bf85288aa6c3f795cd06bbdffb5d446f50c40db17004ba515874f52",
+      "active_app_sha256": "2f42d8bba5c2d92e72076ee906a684ab18c3f744d0ba970c6b374691d08aad61",
+      "active_app_path": "/srv/app.py",
+      "dependencies": {
+        "python": "3.11.15",
+        "packages": {
+          "piper-tts": "1.4.2",
+          "fastapi": "0.139.0",
+          "uvicorn": "0.51.0",
+          "onnxruntime": "1.27.0",
+          "numpy": "2.4.6"
+        }
+      }
+    }
+  },
+  "models": {
+    "omnivoice": {
+      "repository": "k2-fsa/OmniVoice",
+      "source": "https://huggingface.co/k2-fsa/OmniVoice",
+      "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+      "cached_main": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+      "revision_provenance": "cache_revision_not_proven_loaded",
+      "files": [
+        {
+          "name": ".gitattributes",
+          "bytes": 1570,
+          "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930"
+        },
+        {
+          "name": "README.md",
+          "bytes": 9424,
+          "sha256": "b5d645a1874baa96a460a0e3a7d5a262811d682d04ce235878a16d5fed287fd3"
+        },
+        {
+          "name": "audio_tokenizer/.gitattributes",
+          "bytes": 1519,
+          "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+        },
+        {
+          "name": "audio_tokenizer/LICENSE",
+          "bytes": 9171,
+          "sha256": "ac933dc084d119bd20401956b90d11ae87c248b2da62622cd580d82cdf2fa049"
+        },
+        {
+          "name": "audio_tokenizer/README.md",
+          "bytes": 5174,
+          "sha256": "0336368f8274a5ed09f54cee8d56a851ecee96026d9f391a6735762c16608a60"
+        },
+        {
+          "name": "audio_tokenizer/config.json",
+          "bytes": 2531,
+          "sha256": "eefb20806f7104e77c9a5277c9df0f9bb8826b08eb1d4e8ab2b9829b6ef9fac1"
+        },
+        {
+          "name": "audio_tokenizer/model.safetensors",
+          "bytes": 805665628,
+          "sha256": "fe7c5e8785e0a05833e1bfc3e002ec7f55af21e306b2e7154a448c1f54ccfb0d"
+        },
+        {
+          "name": "audio_tokenizer/preprocessor_config.json",
+          "bytes": 206,
+          "sha256": "ae61eea88558608ee2fa86d2aec9fce8d99a5ff75d09cb7651ccce21ae1d9084"
+        },
+        {
+          "name": "chat_template.jinja",
+          "bytes": 4168,
+          "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+        },
+        {
+          "name": "config.json",
+          "bytes": 2238,
+          "sha256": "5e359117e13b420c5e0c925d4aba650d624767131f1d1746928f8b850d5dc372"
+        },
+        {
+          "name": "model.safetensors",
+          "bytes": 2450344112,
+          "sha256": "730839316de585f4c8298ec0e1712efc10fb19c6fa4e36eb741cb8d51ebcf6aa"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 11423986,
+          "sha256": "408f669b7e2b045fdf54201d815bd364e6667dbd845115da81239c40bc6dcfd1"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 533,
+          "sha256": "49f78845596a82bf15c83673794bdf9f76f812b11f60ab6a2239d9be65b00676"
+        }
+      ]
+    },
+    "chatterbox": {
+      "repository": "ResembleAI/chatterbox",
+      "source": "https://huggingface.co/ResembleAI/chatterbox",
+      "revision": "05e904af2b5c7f8e482687a9d7336c5c824467d9",
+      "cached_main": "ef85ce7bef2f3f1a74d0d837d379d2fcb68203cd",
+      "revision_provenance": "pinned_in_active_source",
+      "files": [
+        {
+          "name": "Cangjie5_TC.json",
+          "bytes": 1920163,
+          "sha256": "7073fd9de919443ae88e0bd2449917a65fe54898a4413ed1edcc4b67f28bce8c"
+        },
+        {
+          "name": "conds.pt",
+          "bytes": 107374,
+          "sha256": "6552d70568833628ba019c6b03459e77fe71ca197d5c560cef9411bee9d87f4e"
+        },
+        {
+          "name": "grapheme_mtl_merged_expanded_v1.json",
+          "bytes": 70011,
+          "sha256": "df81a7ca7c31796cbe97f7a7142d5a53b12e88e12417ebe98f66602cafaf0461"
+        },
+        {
+          "name": "s3gen.pt",
+          "bytes": 1057165844,
+          "sha256": "9b9ff07e60b20c136e2b1b3d7563a24604e8d2c4c267888d1ee929dd0151d2a3"
+        },
+        {
+          "name": "t3_mtl23ls_v2.safetensors",
+          "bytes": 2143989752,
+          "sha256": "b1237586127ce98e7800a68e49938eb5092846862aabcb6e17b2fda7889a6c75"
+        },
+        {
+          "name": "ve.pt",
+          "bytes": 5698626,
+          "sha256": "4b16d836bc598509860f6fa068165a8bb5e9ac84f05582dfcf278a5a372879f1"
+        }
+      ]
+    },
+    "xtts": {
+      "model_name": "tts_models/multilingual/multi-dataset/xtts_v2",
+      "upstream_revision": "6c2b0d75eae4b7047358e3b6bd9325f857d43f77",
+      "files": [
+        {
+          "name": "config.json",
+          "bytes": 4368,
+          "sha256": "ef262b1454dd2a77e1461b0b2cd53e19b8a7624cc131b837d36df67356bc75e8"
+        },
+        {
+          "name": "hash.md5",
+          "bytes": 32,
+          "sha256": "ef2e25fc4639bb81c6c5048740c1ee8268606a160548abaa2e2fe03b12278c54"
+        },
+        {
+          "name": "model.pth",
+          "bytes": 1867929118,
+          "sha256": "c7ea20001c6a0a841c77e252d8409f6a74fb423e79b3206a0771ba5989776187"
+        },
+        {
+          "name": "speakers_xtts.pth",
+          "bytes": 7754818,
+          "sha256": "f0f6137c19a4eab0cbbe4c99b5babacf68b1746e50da90807708c10e645b943b"
+        },
+        {
+          "name": "vocab.json",
+          "bytes": 361219,
+          "sha256": "928260878a59da8a72a2a5b7687fea29d5106137669d90945430fe17e415304a"
+        }
+      ],
+      "repository": "coqui/XTTS-v2",
+      "source": "https://huggingface.co/coqui/XTTS-v2",
+      "revision": "6c2b0d75eae4b7047358e3b6bd9325f857d43f77",
+      "revision_provenance": "verified_independent_download",
+      "manual_license_acceptance_file": "assets/models/xtts_v2/tos_agreed.txt",
+      "license_acceptance_policy": "manual_only_no_automatic_generation"
+    },
+    "piper": {
+      "voice": "pl_PL-gosia-medium",
+      "source": "https://huggingface.co/rhasspy/piper-voices/tree/e9ab671f2a0e50a701b34361136ba3e6a3a9eb0c/pl/pl_PL/gosia/medium",
+      "upstream_revision": "e9ab671f2a0e50a701b34361136ba3e6a3a9eb0c",
+      "files": [
+        {
+          "name": "pl_PL-gosia-medium.onnx",
+          "bytes": 63201294,
+          "sha256": "38f66464240ed74f186e6b7dc13c6e3b22e023426299f25c2b3cc9dfa9373fbc"
+        },
+        {
+          "name": "pl_PL-gosia-medium.onnx.json",
+          "bytes": 4814,
+          "sha256": "1aefb31a9d53ffe44a8163ff73ec833acb7a6253848f6bb0403d8a66f9c7510d"
+        }
+      ],
+      "repository": "rhasspy/piper-voices",
+      "revision": "e9ab671f2a0e50a701b34361136ba3e6a3a9eb0c",
+      "revision_provenance": "verified_independent_download"
+    }
+  },
+  "voice": {
+    "id": "Arek",
+    "sha256": "47df44aa49c239874df37b5c109ad942fcf12a295ba7ca5cd76a52194c0a8597",
+    "bytes": 1300578,
+    "included": false
+  },
+  "limitations": {
+    "models_included": false,
+    "docker_images_included": false,
+    "clean_install_tested": false,
+    "omnivoice_loaded_revision_verified": false,
+    "xtts_upstream_revision_verified": false,
+    "piper_upstream_revision_verified": false,
+    "docker_build_reproduction_verified": false
+  }
+}

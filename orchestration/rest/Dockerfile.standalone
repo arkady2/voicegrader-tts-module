@@ -1,0 +1,25 @@
+FROM python:3.11.15-slim-trixie
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+COPY --chmod=0644 requirements.txt /app/requirements.txt
+
+RUN python -m pip install \
+    --no-cache-dir \
+    -r /app/requirements.txt
+
+COPY --chmod=0644 app.py \
+     real_omnivoice.py \
+     real_xtts.py \
+     real_chatterbox.py \
+     real_piper.py \
+     /app/
+
+EXPOSE 8080
+
+CMD ["python", "-m", "uvicorn", \
+     "app:app", "--host", "0.0.0.0", "--port", "8080"]

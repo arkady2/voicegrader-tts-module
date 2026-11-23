@@ -1,0 +1,35 @@
+services:
+  api:
+    image: task-ttscompare-rlhf-realonly:0.7.0-r1
+    container_name: ttscompare-rlhf-task-poc-v07-api-1
+    network_mode: host
+    user: "1002:1003"
+    restart: "no"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      RLHF_POC_DATA: /state
+      RLHF_PUBLIC_BASE_URL: http://127.0.0.1:18774
+      RLHF_OMNIVOICE_URL: http://127.0.0.1:8005
+      RLHF_XTTS_URL: http://127.0.0.1:18764
+      RLHF_CHATTERBOX_URL: http://127.0.0.1:18767
+      RLHF_PIPER_URL: http://127.0.0.1:18769
+    volumes:
+      - type: bind
+        source: /home/arekh/ttscompare-rlhf-task-poc-v07/state
+        target: /state
+    working_dir: /poc
+    entrypoint:
+      - python
+    command:
+      - -B
+      - -m
+      - uvicorn
+      - app:app
+      - --host
+      - 127.0.0.1
+      - --port
+      - "18774"

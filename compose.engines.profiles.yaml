@@ -1,0 +1,72 @@
+name: ttscompare-softwarex-v2-lab
+
+services:
+  omnivoice:
+    profiles: ["omnivoice", "all"]
+    build:
+      context: ./engines/omnivoice
+    image: ttscompare-rebuild-omnivoice:candidate
+    gpus: all
+    ports:
+      - "127.0.0.1:19805:8000"
+    environment:
+      HF_HOME: /models/hf
+      HF_HUB_OFFLINE: "1"
+      OMNIVOICE_MODEL_ID: k2-fsa/OmniVoice
+      OMNIVOICE_SPEAKER_WAV: /voices/Arek.wav
+    volumes:
+      - ./assets/hf:/models/hf:ro
+      - ./assets/voices/Arek.wav:/voices/Arek.wav:ro
+    restart: "no"
+
+  xtts:
+    profiles: ["xtts", "all"]
+    build:
+      context: ./engines/xtts
+    image: ttscompare-rebuild-xtts:candidate
+    gpus: all
+    ports:
+      - "127.0.0.1:19864:8100"
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      OMP_NUM_THREADS: "4"
+      COQUI_TOS_AGREED: "${COQUI_TOS_AGREED:-0}"
+    volumes:
+      - ./assets/models/xtts_v2:/models/xtts_v2:ro
+      - ./assets/voices/Arek.wav:/voices/Arek.wav:ro
+    mem_limit: 24g
+    restart: "no"
+
+  chatterbox:
+    profiles: ["chatterbox", "all"]
+    build:
+      context: ./engines/chatterbox
+    image: ttscompare-rebuild-chatterbox:candidate
+    gpus: all
+    ports:
+      - "127.0.0.1:19867:8100"
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      CUDA_VISIBLE_DEVICES: "0"
+      OMP_NUM_THREADS: "4"
+    volumes:
+      - ./assets/hf:/hf:ro
+      - ./assets/voices/Arek.wav:/voices/Arek.wav:ro
+    mem_limit: 32g
+    restart: "no"
+
+  piper:
+    profiles: ["piper", "all"]
+    build:
+      context: ./engines/piper
+    image: ttscompare-rebuild-piper:candidate
+    ports:
+      - "127.0.0.1:19869:8100"
+    environment:
+      OMP_NUM_THREADS: "4"
+    volumes:
+      - ./assets/models/piper:/models/piper:ro
+    mem_limit: 4g
+    restart: "no"

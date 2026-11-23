@@ -1,0 +1,44 @@
+{
+  "test": "softwarex_independent_rest_real_e2e",
+  "status": "PASS",
+  "timestamp_utc": "2026-11-19T01:34:37.967945+00:00",
+  "image_id": "sha256:c9166e8f8ae39797180b226f1c69b9e85b37d07dd141f16735b798178ac4b96f",
+  "job_id": "job-72b315241e994d55b1e303c2d06af9e2",
+  "engines_requested": [
+    "omnivoice",
+    "xtts",
+    "chatterbox",
+    "piper"
+  ],
+  "archive_sha256": "a1972b1439a51c3dc59f9eca152b57b1b35ec8bfe8294ac895b858e3ab5e907f",
+  "archive_bytes": 668806,
+  "audio": [
+    {
+      "name": "audio/file-000001.wav",
+      "bytes": 206924,
+      "duration_seconds": 4.31,
+      "sha256": "b7a872204f25e5506d23dbf50e2bd95ef7b61527dc488ac3cf59b3e44c46e58e"
+    },
+    {
+      "name": "audio/file-000002.wav",
+      "bytes": 247340,
+      "duration_seconds": 5.152,
+      "sha256": "896eb3d4cc6fec0ca22bc55a60751315960fe84a0d82b9b81ff45065f1fdc504"
+    },
+    {
+      "name": "audio/file-000003.wav",
+      "bytes": 186284,
+      "duration_seconds": 3.88,
+      "sha256": "e43163ff45f534350f95440a710a6e33ce4f9500c8c0124606dd1bd73a6ed06f"
+    },
+    {
+      "name": "audio/file-000004.wav",
+      "bytes": 165932,
+      "duration_seconds": 3.762,
+      "sha256": "bd8e0907175a933e5212e9b3e489d3006eae87ef082face2d103ce8bcebf3c90"
+    }
+  ],
+  "reference_services_modified": false,
+  "new_gpu_containers_started": false,
+  "used_existing_reference_engines": true
+}

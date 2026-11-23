@@ -1,0 +1,42 @@
+{
+  "schema": "softwarex-v4-evidence-index",
+  "status": "SOURCE_CANDIDATE_NOT_PUBLICATION_READY",
+  "created_utc": "2026-11-19T01:40:07.177725+00:00",
+  "independent_rest_image": {
+    "image_id": "sha256:c9166e8f8ae39797180b226f1c69b9e85b37d07dd141f16735b798178ac4b96f",
+    "base_image_tag": "python:3.11.15-slim-trixie",
+    "historical_custom_rest_base_used": false,
+    "build_log_sha256": "17905860f79c031c9224a1e533e5910f42ee8f3964bad43204c4a8abe7cdebbe",
+    "dockerfile_sha256": "41406060bdae76737dc5af5bb77afce26351597c681d04b7face722e412fbe14",
+    "requirements_sha256": "635668b51470e50669f81091212a84f653d413629cb767480434e1aea11e85cc"
+  },
+  "http_smoke": {
+    "status": "PASS",
+    "report_sha256": "68d101036865892bb85001e121b22dc59ac35dcc7ab88c4f018aada04a8100ef"
+  },
+  "real_e2e": {
+    "status": "PASS",
+    "engines": [
+      "omnivoice",
+      "xtts",
+      "chatterbox",
+      "piper"
+    ],
+    "wav_count": 4,
+    "archive_sha256": "a1972b1439a51c3dc59f9eca152b57b1b35ec8bfe8294ac895b858e3ab5e907f",
+    "report_sha256": "7fffaec10011cb45b5ff5ad1e2e87bc2177864bf1a19e91e181b7db925b576ff",
+    "used_existing_reference_engines": true
+  },
+  "original_raw_results": {
+    "build_directory": "/home/arekh/ttscompare-code-archives/rest-independent-rebuild/20261119T011840Z/permfix-20261119T012832Z",
+    "e2e_directory": "/home/arekh/ttscompare-code-archives/rest-independent-rebuild/20261119T011840Z/permfix-20261119T012832Z/e2e-20261119T013430Z"
+  },
+  "limitations": [
+    "Fresh host installation not yet verified",
+    "GPU 8GB runtime not yet verified",
+    "Model license review remains open",
+    "Full security audit remains open",
+    "Manuscript consistency review remains open",
+    "Full REST and n8n deployment reproduction not verified"
+  ]
+}

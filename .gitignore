@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Credentials
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# External assets
+/assets/
+/models/cache/
+
+# Model weights and recordings
+*.wav
+*.mp3
+*.onnx
+*.pth
+*.safetensors
+*.ckpt
+*.pt
+
+# Runtime files
+/state/
+/logs/
+/output/
+/outputs/
+/results/
+
+# Local verification gate
+BUILD-AND-SYNTHESIS-VERIFIED
