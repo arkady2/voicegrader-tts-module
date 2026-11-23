@@ -24,8 +24,6 @@ The operator must supply the reference recording and, for the supported OmniVoic
 | `orchestration/n8n/` | Laboratory four-engine workflow |
 | `orchestration/rest-release/` | Historical REST deployment artifacts; not the standalone build path |
 | `models/`, `tools/` | Model metadata and asset-management utilities |
-| `verification-v3/`, `verification-v4/` | Preserved workflow and REST verification evidence |
-| `docs/historical/` | Earlier documentation, retained for provenance |
 
 ## Engine deployment
 
@@ -37,7 +35,7 @@ Inspect the Piper service configuration without starting it:
 docker compose -f compose.engines.proxmox.yaml --profile piper config --services
 ```
 
-The `tts-run.sh` helper provides planning and a verification gate:
+The `tts-run.sh` helper provides planning and a verification gate. Engine startup through this helper requires a local `BUILD-AND-SYNTHESIS-VERIFIED` marker. The marker is not distributed with the source release and must not be created without completing the required build and synthesis verification:
 
 ```bash
 bash tts-run.sh piper plan
@@ -96,12 +94,11 @@ The n8n path calls engine services directly and is separate from the REST job qu
 | File | Purpose | Engine addresses | WAV checks |
 |---|---|---|---|
 | `orchestration/n8n/workflow-four-real-tts-cli.json` | Laboratory workflow | Host loopback: `8005`, `18764`, `18767`, `18769` | Checks for returned binary data; labels it `received_binary_unverified` |
-| `verification-v3/n8n-real-tested-workflow.json` | Workflow retained from isolated validation | Docker service DNS: `omnivoice:8000`, other engines on `:8100` | Validates WAV structure and reports `verified_wav` |
 
-These addresses are environment-specific. Neither set is identical to the host ports in the supplied Compose configurations (`19805`, `19864`, `19867`, `19869`); importing a workflow alone does not configure network routing. The verification workflow is preserved as evidence, not a replacement for the laboratory definition.
+These addresses are environment-specific and differ from the host ports in the supplied Compose configurations (`19805`, `19864`, `19867`, `19869`). Importing the workflow alone does not configure network routing. The distributed workflow does not independently verify WAV structure. A separate validation workflow was used in laboratory testing but is not included in the current repository.
 
 ## Verification and release
 
-Preserved evidence covers engine builds and synthesis, REST HTTP checks, independent REST build and four-engine end-to-end synthesis, and n8n end-to-end processing. These are **component and integration tests**, not proof of deployment on an arbitrary fresh host or operation of the complete VoiceGrader pipeline. See `verification-v3/`, `verification-v4/` and [RELEASE-NOTES.md](RELEASE-NOTES.md).
+TASK laboratory verification covered engine builds and synthesis, REST HTTP checks, an independent REST build, four-engine REST end-to-end synthesis, and n8n end-to-end processing. These were **component and integration tests**, not proof of deployment on an arbitrary fresh host or operation of the complete VoiceGrader pipeline. Detailed historical verification records are not included in the current repository. See [RELEASE-NOTES.md](RELEASE-NOTES.md).
 
-`SHA256SUMS.release` verifies the current distribution. `SHA256SUMS.v4` and manifests under `docs/historical/` describe earlier source states; they are not current-release checksums. The application source license remains subject to a decision by the authorized rights holder; see [LICENSE-REVIEW.md](LICENSE-REVIEW.md).
+`SHA256SUMS.v4` describes an earlier source state and is not a checksum manifest for the current repository. The application source license remains subject to a decision by the authorized rights holder; see [LICENSE-REVIEW.md](LICENSE-REVIEW.md).

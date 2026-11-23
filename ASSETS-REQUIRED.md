@@ -15,4 +15,4 @@ OmniVoice requires a reference WAV recording **and a matching transcription** fo
 
 The laboratory setup used the private `Arek.wav` recording with OmniVoice, XTTS and Chatterbox. No reference recording or transcription is redistributed in this package. Operators must use recordings they are authorized to process.
 
-Model files must be supplied separately. XTTS model terms require operator review and explicit acceptance; the package does not create an acceptance file automatically. See [LICENSE-REVIEW.md](LICENSE-REVIEW.md). Historical asset notes remain in `docs/historical/`.
+Model files must be supplied separately. XTTS model terms require operator review and explicit acceptance; the package does not create an acceptance file automatically. See [LICENSE-REVIEW.md](LICENSE-REVIEW.md).
